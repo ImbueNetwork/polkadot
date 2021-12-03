@@ -12,7 +12,9 @@ Output: Validation result via the provided response side-channel.
 
 ## Functionality
 
-This subsystem answers two types of requests: one which draws out validation data from the state, and another which accepts all validation data exhaustively. The goal of both request types is to validate a candidate. There are three possible outputs of validation: either the candidate is valid, the candidate is invalid, or an internal error occurred. Whatever the end result is, it will be returned on the response channel to the requestor.
+This subsystem answers two categories of requests: one validates candidates and the other is for PVF pre-checking. 
+
+The first category can be further subdivided on two request types: one which draws out validation data from the state, and another which accepts all validation data exhaustively. There are three possible outputs of validation: either the candidate is valid, the candidate is invalid, or an internal error occurred. Whatever the end result is, it will be returned on the response channel to the requestor.
 
 Parachain candidates are validated against their validation function: A piece of Wasm code that is describes the state-transition of the parachain. Validation function execution is not metered. This means that an execution which is an infinite loop or simply takes too long must be forcibly exited by some other means. For this reason, we recommend dispatching candidate validation to be done on subprocesses which can be killed if they time-out.
 
@@ -21,6 +23,8 @@ Upon receiving a validation request, the first thing the candidate validation su
   * The [`CandidateDescriptor`](../../types/candidate.md#candidatedescriptor).
   * The [`ValidationData`](../../types/candidate.md#validationdata).
   * The [`PoV`](../../types/availability.md#proofofvalidity).
+  
+The second category is for PVF pre-checking. This is primarly used by the [PVF pre-checker](pvf-prechecker.md) subsystem.
 
 ### Determining Parameters
 
