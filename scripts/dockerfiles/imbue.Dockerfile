@@ -5,7 +5,7 @@ LABEL maintainer="imbue-dev"
 ARG RUST_VERSION=1.53.0
 ARG PROFILE=release
 ARG DOT_GIT_REPO="https://github.com/ImbueNetwork/polkadot.git"
-ARG DOT_BRANCH="master"
+ARG DOT_BRANCH="release-v0.9.15"
 
 RUN rm -rf /usr/local/rustup/toolchains/
 RUN rustup default stable
