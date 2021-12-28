@@ -1,4 +1,4 @@
-#imbuenetwork/polkadot:latest 
+#samelamin/polkadot:latest 
 FROM paritytech/ci-linux:production as builder
 
 LABEL maintainer="imbue-dev"
@@ -28,7 +28,3 @@ RUN cp /usr/local/cargo/bin/subkey /subkey
 
 
 WORKDIR /builds/
-RUN git clone --recursive ${DATA_FETECHER_REPO}
-WORKDIR /builds/sample-data-fetcher
-RUN cargo build --${PROFILE}
-RUN cp target/${PROFILE}/data_fetcher /data_fetcher
